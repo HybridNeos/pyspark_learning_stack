@@ -15,7 +15,7 @@ services:
       - SPARK_USER=spark
     ports:
       - '8080:8080'
-      - '8888:8888'
+      - '8082:8082'
   spark-worker-a:
     image: my/spark:3.4_gcp
     environment:
@@ -40,3 +40,9 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - SPARK_USER=spark
+  airflow:
+    image: apache/airflow:2.7.0
+    ports:
+      - "8081:8080"
+    command:
+      bash -c "airflow standalone"
